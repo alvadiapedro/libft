@@ -2,7 +2,7 @@ CC=gcc -Wall -Werror -Wextra
 
 NAME=libft.a
 
-SRCS= ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
+SRC= ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 ft_isdigit.c ft_isprint.c ft_itoa.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c \
 ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_memalloc.c ft_memccpy.c ft_memchr.c \
 ft_memcmp.c ft_memcpy.c ft_memdel.c ft_memmove.c ft_memset.c ft_putchar_fd.c \
@@ -14,23 +14,32 @@ ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c \
 ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c ft_tolower.c ft_toupper.c \
 ft_iswspace.c ft_isspace.c ft_wordlen.c ft_wordcount.c ft_nbrlen.c
 
+SRC_BONUS= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
+ft_lstadd_back.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstmap.c	
+
 OBJECTS=$(SRC:.c=.o)
+
+OBJ_BONUS=$(SRC_BONUS:.c=.o)
 
 HEADERS=libft.h
 
 all: $(NAME)
 
-$(NAME): $(SRCS) libft.h
-	@$(CC) -c $(SRCS)
-	@ar rc $(NAME) $(OBJECTS)
+$(NAME): $(OBJECTS) $(HEADERS)
+	@ar rcs $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
 
+bonus: $(OBJ_BONUS)
+	@ar rcs $(NAME) $(OBJ_BONUS)
+	@ranlib $(NAME)
+
+.c.o:
+	$(CC) -I$(HEADERS) -c  $< -o $(<:.c=.o)
+
 clean:
-	@/bin/rm -f $(OBJECTS)
+	@/bin/rm -f $(OBJECTS) $(OBJ_BONUS)
 
 fclean: clean
 	@/bin/rm -f $(NAME)
 
 re: fclean all
-
-bonus: 
