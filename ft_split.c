@@ -1,5 +1,5 @@
-#include "libft"
-
+#include "libft.h"
+/*
 int	word_count(const char *str, char c)
 {
 	size_t	i;
@@ -48,4 +48,4 @@ char	**ft_split(char const *s, char c)
 	}
 	array[i] = NULL;
 	return (array);
-}
+}*/

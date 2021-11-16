@@ -1,5 +1,5 @@
 #include "libft.h"
-
+/*
 static int	ft_savenb(char c)
 {
 	static int	i;
@@ -42,4 +42,4 @@ char	*ft_itoa(int n)
 
 	str = malloc(sizeof(char) * (ft_nbrlen(n) + 1));
 	fazer putnbr
-}
+}*/
