@@ -12,7 +12,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
 		if (haystack[i] == needle[0])
 		{
 			if (ft_strncmp(haystack + i, needle, t) == 0)
-				return (haystack + i);
+				return ((char *)(haystack + i));
 		}
 		i++;
 	}

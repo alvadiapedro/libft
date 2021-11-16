@@ -1,20 +1,9 @@
 #include "libft.h"
-/*
-static int	ft_savenb(char c)
-{
-	static int	i;
-	char	x;
 
-	i = 0;
-	x = c;
-	i++;
-	return (x);
-}
-
-void	ft_putnbr(int nb, char *str)
+char	*ft_putnbr(int nb)
 {
 	int	i;
-	char	*str;
+	unsigned char	*str;
 
 	i = 0;
 	if (nb == -2147483648)
@@ -31,15 +20,31 @@ void	ft_putnbr(int nb, char *str)
 		{
 			ft_putnbr(nb / 10);
 		}
-		str[i++] = ft_savenb(nb % 10 + '0');
+		str[i++] = nb % 10 + '0';
 	}
 	return (str);
+}
+
+int	ft_nbrlen(int n)
+{
+	int	i;
+
+	i = 0;
+	while (n > 0)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
 	char	*str;
 
-	str = malloc(sizeof(char) * (ft_nbrlen(n) + 1));
-	fazer putnbr
-}*/
+	if (!(str = malloc(sizeof(char) * (ft_nbrlen(n) + 1))))
+		return (NULL);
+	str = ft_putnbr(n);
+	return (str);
+	
+}
