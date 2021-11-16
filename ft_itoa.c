@@ -1,30 +1,5 @@
 #include "libft.h"
 
-char	*ft_putnbr(int nb)
-{
-	int	i;
-	unsigned char	*str;
-
-	i = 0;
-	if (nb == -2147483648)
-		str = "-2147483648";
-	else if (nb < 0)
-	{
-		str[i] = '-';
-		i++;
-		ft_putnbr(-nb);
-	}
-	else
-	{
-		if (nb > 9)
-		{
-			ft_putnbr(nb / 10);
-		}
-		str[i++] = nb % 10 + '0';
-	}
-	return (str);
-}
-
 int	ft_nbrlen(int n)
 {
 	int	i;
@@ -41,10 +16,19 @@ int	ft_nbrlen(int n)
 char	*ft_itoa(int n)
 {
 	char	*str;
+	int	len;
 
-	if (!(str = malloc(sizeof(char) * (ft_nbrlen(n) + 1))))
+	len = ft_nbrlen(n);
+	if (!(str = malloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	str = ft_putnbr(n);
+	while (n > 0)
+	{
+		str[len] = n % 10 + '0';
+		len--;
+		n /= 10;
+	}
+	if (((float)n) < 0)
+		str[len] = '-';
 	return (str);
 	
 }
