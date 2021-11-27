@@ -29,9 +29,6 @@ bonus: $(OBJ_BONUS)
 	@ar rcs $(NAME) $(OBJ_BONUS)
 	@ranlib $(NAME)
 
-.c.o:
-	$(CC) -I$(HEADERS) -c  $< -o $(<:.c=.o)
-
 clean:
 	@/bin/rm -f $(OBJECTS) $(OBJ_BONUS)
 
