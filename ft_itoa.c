@@ -15,14 +15,32 @@
 int	ft_nbrlen(int n)
 {
 	int	i;
+	unsigned int	nbr;
 
 	i = 0;
-	while (n != 0)
+	nbr = n;
+	if (n < 0)
 	{
-		n /= 10;
+		nbr *= -1;
+		i++;
+	}
+	while (nbr)
+	{
+		nbr /= 10;
 		i++;
 	}
 	return (i);
+}
+
+char *ft_writenbr(char *str, unsigned int n, int len)
+{
+	while (n > 0)
+	{
+		str[len] = 48 + (n % 10);
+		n /= 10;
+		len--;
+	}
+	return (str);
 }
 
 char	*ft_itoa(int n)
@@ -31,23 +49,18 @@ char	*ft_itoa(int n)
 	int		len;
 
 	len = ft_nbrlen(n);
-	str = malloc(sizeof(char) * (len + 1));
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	str[len] = '\0';
 	len--;
 	if (n == 0)
-	{
 		str[0] = '0';
-		return (str);
-	}	
-	while (n != 0)
+	if (n < 0)
 	{
-		str[len] = n % 10 + '0';
-		len--;
-		n /= 10;
+		n *= -1;
+		str[0] = '-';
 	}
-	if (len && ((float)n) < 0)
-		str[len] = '-';
+	str = ft_writenbr(str, n, len);
 	return (str);
 }

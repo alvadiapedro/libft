@@ -17,22 +17,20 @@ int	ft_delimiter(char i, char c)
 	return (i == c);
 }
 
-int	ft_word_count(const char *str, char c)
+int	ft_word_count(const char *s, char c)
 {
-	size_t			i;
 	int	words;
 
-	i = 0;
 	words = 0;
-	while (str[i])
+	while (*s)
 	{
-		while (str[i] && str[i] == c)
-			i++;
-		if (str[i] && str[i] != c)
+		while (*s && ft_delimiter(*s, c))
+			s++;
+		if (*s && !ft_delimiter(*s, c))
 		{
 			words++;
-			while (str[i] && str[i] != c)
-				i++;
+			while (*s && !ft_delimiter(*s, c))
+				s++;
 		}
 	}
 	return (words);
@@ -77,6 +75,7 @@ char	**ft_split(char const *s, char c)
 			array[i] = ft_alloc_word(s, c);
 			while (*s && !ft_delimiter(*s, c))
 				s++;
+			i++;
 		}
 	}
 	array[i] = NULL;
