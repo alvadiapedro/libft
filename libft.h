@@ -6,7 +6,7 @@
 /*   By: pmiranda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 13:17:56 by pmiranda          #+#    #+#             */
-/*   Updated: 2021/11/17 13:32:46 by pmiranda         ###   ########.fr       */
+/*   Updated: 2022/05/03 17:06:04 by pmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
+long	ft_atol(const char *str);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putchar_fd(char c, int fd);
@@ -72,22 +73,21 @@ void	ft_lstiter(t_list *lst, void (*f)(void*));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void*));
 
 char	*get_next_line(int fd);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
-
-int	ft_printf(const char *input, ...);
-int	ft_print_to_percent(const char *input, va_list args);
-int	ft_putchar(char c);
-int	ft_putint(int n);
-int	ft_putstr(char *str);
-int	ft_nlen(unsigned int n);
+int		ft_printf(const char *input, ...);
+int		ft_print_to_percent(const char *input, va_list args);
+int		ft_putchar(char c);
+int		ft_putint(int n);
+int		ft_putstr(char *str);
+int		ft_nlen(unsigned int n);
 char	*ft_utoa(unsigned int n);
-int	ft_putunsint(unsigned int n);
-int	ft_putptr(unsigned long n);
-int	ft_puthex(unsigned int n, int x);
+int		ft_putunsint(unsigned int n);
+int		ft_putptr(unsigned long n);
+int		ft_puthex(unsigned int n, int x);
 char	ft_change_base(unsigned int n, int x);
-int	ft_check_spec(const char *input, va_list args);
+int		ft_check_spec(const char *input, va_list args);
 
 #endif
